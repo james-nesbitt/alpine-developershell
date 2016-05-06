@@ -7,6 +7,7 @@ FROM quay.io/wunder/wunder-alpine-base:edge
 RUN apk --update add curl wget git vim zsh tar gzip p7zip xz nodejs sudo openssh openssl ansible && \
     rm -rf /tmp/* && \
     rm -rf /var/cache/apk/*
+ADD etc/sudoers.d/app_nopasswd /etc/sudoers.d/app_nopasswd
 
 #
 # PHP AND MySQL
