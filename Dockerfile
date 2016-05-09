@@ -4,7 +4,7 @@ FROM quay.io/wunder/wunder-alpine-base:edge
 # Developer tools
 #
 
-RUN apk --update add curl wget git vim zsh tar gzip p7zip xz nodejs sudo openssh openssl ansible && \
+RUN apk --update add curl wget git vim zsh tar gzip p7zip xz nodejs sudo openssh openssl ansible rsync && \
     rm -rf /tmp/* && \
     rm -rf /var/cache/apk/*
 ADD etc/sudoers.d/app_nopasswd /etc/sudoers.d/app_nopasswd
@@ -15,7 +15,7 @@ ADD etc/sudoers.d/app_nopasswd /etc/sudoers.d/app_nopasswd
 
 # Update the package repository and install applications
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
-apk --no-cache --update add mysql-client php7 php7-common php7-openssl php7-memcached php7-xml php7-xmlrpc php7-pdo php7-pdo_mysql php7-pdo_pgsql php7-pdo_sqlite php7-mysqlnd php7-mysqli php7-mcrypt php7-opcache php7-json php7-fpm php7-pear php7-mbstring php7-soap php7-ctype php7-gd php7-dom php7-phar php7-pear php7-ast php7-xdebug && \
+apk --no-cache --update add mysql-client php7 php7-common php7-openssl php7-memcached php7-curl php7-zlib php7-xml php7-xmlrpc php7-pdo php7-pdo_mysql php7-pdo_pgsql php7-pdo_sqlite php7-mysqlnd php7-mysqli php7-mcrypt php7-opcache php7-json php7-fpm php7-pear php7-mbstring php7-soap php7-ctype php7-gd php7-dom php7-phar php7-pear php7-ast php7-xdebug && \
     ln -s /usr/bin/php7 /usr/bin/php && \
     rm -rf /tmp/* && \
     rm -rf /var/cache/apk/*
