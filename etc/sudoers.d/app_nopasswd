@@ -1,2 +1,0 @@
- ## Allow the app user sudo without a password, on ALL actions
- app ALL=(ALL) NOPASSWD: ALL
