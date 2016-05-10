@@ -27,7 +27,7 @@ It was written with the following goals:
 
 Containers
 
-1. PHP CLI
+1. PHP CLI (without xdebug)
 2. PHP Composer
 3. NodeJS (& npm)
 4. GruntJS (global)
@@ -42,7 +42,7 @@ Does not contain:
 1. drush: should be a part of composer in your D8 app
 2. drupal-console : should be a part of composer in your D8 app
 
-## Usage:
+## Usage
 
 run this container, either as a shell or by specifying a command with flags, attach it to whatever volumes and containers you need, and get isolated command environments as you wish.
 
@@ -55,6 +55,13 @@ Consider binding:
 
 * attach anything not disposable, as the container is meant to disappear when it is finished running.
 
+## Notes
+
+- You can get available php variables by running:
+    docker run -ti --rm quay.io/wunder/wundertools-image-fuzzy-developershell
+    php -r "phpinfo();"
+
 ## TODO
 
-1. add more toys
+1. Add more toys
+2. Maybe fork another image that includes xdebug
