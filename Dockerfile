@@ -15,6 +15,7 @@ apk --no-cache --update add mysql-client php7 php7-common php7-openssl php7-memc
     ln -s /usr/bin/php7 /usr/bin/php && \
     rm -rf /tmp/* && \
     rm -rf /var/cache/apk/*
+ADD etc/php7/conf.d/WK_date.ini /etc/php7/conf.d/WK_date.ini
 
 # Common theming tools
 RUN npm install -g gulp grunt
