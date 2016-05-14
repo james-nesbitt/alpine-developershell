@@ -34,7 +34,10 @@ USER app
 RUN composer global require drush/drush:8.x
 
 # Drupal Console
-RUN composer global require drupal/console:1.0.0-alpha2
+RUN composer global require drupal/console:1.0.0-alpha2 && \
+    export PATH=$HOME/.composer/vendor/bin:$PATH && \
+    drupal init --override
+ADD app/.console/phpcheck.yml /app/.console/phpcheck.yml
 
 # oh-my-zsh
 RUN git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh

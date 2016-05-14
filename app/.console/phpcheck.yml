@@ -1,0 +1,29 @@
+requirements:
+  php:
+    required: 5.5.9
+  configurations:
+    required:
+      - date.timezone: "UTC" # Default to UTC, same as container.
+      - memory_limit: 1024M
+    recomended:
+  extensions:
+    required:
+      - date
+      - dom
+      - filter
+      - gd
+      - hash
+      - json
+      - pcre
+      - pdo
+      - session
+      - SimpleXML
+      - SPL
+      - tokenizer
+      - xml
+      - curl
+    recommended:
+      # - mysql
+      - mysqli
+      # - sqlite3
+      - pdo_sqlite
