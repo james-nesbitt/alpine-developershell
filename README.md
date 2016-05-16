@@ -1,5 +1,5 @@
 # wundertools-image-fuzzy-developershell
-A developer shell and command image for Drupal Development
+A developer shell and command image for Drupal.
 
 ## Deploys to
 
@@ -7,7 +7,9 @@ https://quay.io/repository/wunder/wundertools-image-fuzzy-developershell
 
 ## Base
 
-this image is based on a common alpine standard base: https://github.com/wunderkraut/wunder-alpine-base
+This image is based on a common alpine standard base:
+
+https://github.com/wunderkraut/wunder-alpine-base
 
 ## Purpose
 
@@ -55,11 +57,18 @@ Consider binding:
 
 * attach anything not disposable, as the container is meant to disappear when it is finished running.
 
-## Notes
+## Development
+
+- If you want to change the configuration of this image and build it locally for testing you can do that by running:
+~~~
+docker build -t quay.io/wunder/wundertools-image-fuzzy-developershell --no-cache .
+~~~
 
 - You can get available php variables by running:
-    docker run -ti --rm quay.io/wunder/wundertools-image-fuzzy-developershell
-    php -r "phpinfo();"
+~~~
+docker run -ti --rm quay.io/wunder/wundertools-image-fuzzy-developershell
+php -r "phpinfo();"
+~~~
 
 ## TODO
 

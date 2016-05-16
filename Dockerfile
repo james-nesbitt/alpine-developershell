@@ -15,6 +15,7 @@ apk --no-cache --update add mysql-client php7 php7-common php7-openssl php7-memc
     ln -s /usr/bin/php7 /usr/bin/php && \
     rm -rf /tmp/* && \
     rm -rf /var/cache/apk/*
+ADD etc/php7/conf.d/WK_date.ini /etc/php7/conf.d/WK_date.ini
 
 # Common theming tools
 RUN npm install -g gulp grunt
@@ -33,7 +34,10 @@ USER app
 RUN composer global require drush/drush:8.x
 
 # Drupal Console
-RUN composer global require drupal/console:1.0.0-alpha2
+RUN composer global require drupal/console:1.0.0-alpha2 && \
+    export PATH=$HOME/.composer/vendor/bin:$PATH && \
+    drupal init --override
+ADD app/.console/phpcheck.yml /app/.console/phpcheck.yml
 
 # oh-my-zsh
 RUN git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh

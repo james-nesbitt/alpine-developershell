@@ -93,3 +93,6 @@ export PATH=$HOME/project/vendor/bin:$PATH
 
 # Stop some grep errors.
 unset GREP_OPTIONS
+
+# Drupal Console configuration.
+source "$HOME/.console/console.rc" 2>/dev/null
