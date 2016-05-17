@@ -51,4 +51,4 @@ RUN chown -R app:app /app
 
 USER app
 WORKDIR /app
-CMD ["/bin/zsh"]
+CMD ["/usr/bin/ssh-agent","/bin/zsh"]
