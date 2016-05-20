@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+# How to use me:
+#  1. put me into any bin path, or run me using a full path (probably make me executable.)
+#  2. cd into any path in which you would like to have shell access
+#  3. run me, and you will be entered into an alternate shell with more tools 
+#
+
+# define which image to use as a command shell image
+#
+# * this image is still under development, and has some quirks.
+# * you will need to occasionally update this image: docker pull quay.io/wunder/wundertools-image-fuzzy-developershell
+# * you can report any image related issues here: https://github.com/wunderkraut/wundertools-image-fuzzy-developershell/issues
+#
+DOCKER_IMAGE_DEVELOPERTOOL="quay.io/wunder/wundertools-image-fuzzy-developershell"
+
+# define what paths are used to bind/mount into the container
+PATH_TARGET="$(pwd)"
+PATH_HOME="${HOME}"
+
+# Run a container:
+#
+# --rm -ti : remove the container after running, give it a tty, and attach input
+#
+# Map 3 host paths into the container (add more as needed)
+# --volume="${PATH_TARGET}:/app/target" \                 <-- the current host path will be mapped to /app/target in the container
+# --volume="${PATH_HOME}/.gitconfig:/app/.gitconfig" \    <-- you may need to use ssh, so use the host keys
+# --volume="${PATH_HOME}/.ssh:/app/.ssh" \                <-- you may use a github token, so save it if so
+#
+# Tell docker what directory to run the command inside the container
+# -w=/app \
+#
+# $@ will pass all command arguments to the docker command, so composer receives your command
+#
+docker run --rm -t -i \
+    --volume="${PATH_TARGET}:/app/target" \
+    --volume="${PATH_HOME}/.gitconfig:/app/.gitconfig" \
+    --volume="${PATH_HOME}/.ssh:/app/.ssh" \
+    -w=/app/target \
+    ${DOCKER_IMAGE_DEVELOPERTOOL} \
+    $@
+    
+#
+# Notes:
+#
+# * The will run zsh inside a container, AND THEN REMOVE THE CONTAINER and all of the container changes upon exit
+# * this process is not perfect, and may once in a while require some manual support in removing dead containers
+#
+# - if zsh crashes, the container will exit, but will not remove itself.  You will need to clean it yourself
+#
+# - this doesn't link to any other containers.  Consider adding something like "--link MyDBContainerName:db.app"
+#
