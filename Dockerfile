@@ -39,7 +39,8 @@ apk --no-cache --update add \
     php7-dom \
     php7-phar \
     php7-pear \
-    php7-ast && \
+    php7-ast \
+    php7-gmagick && \
     ln -s /usr/bin/php7 /usr/bin/php && \
     rm -rf /tmp/* && \
     rm -rf /var/cache/apk/*
