@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="candy"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -52,8 +52,7 @@ plugins=(git)
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-# export MANPATH="/usr/local/man:$MANPATH
+export PATH="$PATH:$HOME/bin:/usr/local/bin"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -87,9 +86,9 @@ alias app_drupal="/app/project/vendor/bin/drupal --root=/app/project/web "
 alias app_drush="/app/project/vendor/bin/drush --root=/app/project/web "
 
 # Include paths for different tools.
-export PATH=$HOME/.gem/ruby/2.1.0/bin:$PATH
-export PATH=$HOME/.composer/vendor/bin:$PATH
-export PATH=$HOME/project/vendor/bin:$PATH
+export PATH="$PATH:$HOME/.gem/ruby/2.1.0/bin"
+export PATH="$PATH:$HOME/.composer/vendor/bin"
+export PATH="$PATH:$HOME/project/vendor/bin"
 
 # Stop some grep errors.
 unset GREP_OPTIONS
