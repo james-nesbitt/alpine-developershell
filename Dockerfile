@@ -70,4 +70,4 @@ RUN chown -R app:app /app
 
 USER app
 WORKDIR /app
-CMD ["/usr/bin/ssh-agent","/bin/zsh"]
+ENTRYPOINT ["/usr/bin/ssh-agent","/bin/zsh"]
