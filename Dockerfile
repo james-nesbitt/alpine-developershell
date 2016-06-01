@@ -58,6 +58,13 @@ export PATH=$HOME/.composer/vendor/bin:$PATH && \
 drupal init --override
 ADD app/.console/phpcheck.yml /app/.console/phpcheck.yml
 
+### PlatformSH CLI 
+# @TODO this should be build using compsoer. composer builds currently fail, so we simulate it
+#        RUN composer global require platformsh/cli
+#
+RUN curl -L -o /app/.composer/vendor/bin/platform https://github.com/platformsh/platformsh-cli/releases/download/v3.1.1/platform.phar && \
+    chmod a+x /app/.composer/vendor/bin/platform
+
 ### oh-my-zsh
 RUN git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 ADD app/.zshrc /app/.zshrc
