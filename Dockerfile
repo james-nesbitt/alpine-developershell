@@ -53,7 +53,7 @@ USER app
 RUN composer global require drush/drush:8.x
 
 ### Drupal Console
-RUN composer global require drupal/console:1.0.0-alpha2 && \
+RUN composer global require drupal/console:1.0.0-beta1 && \
 export PATH=$HOME/.composer/vendor/bin:$PATH && \
 drupal init --override
 ADD app/.console/phpcheck.yml /app/.console/phpcheck.yml
