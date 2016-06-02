@@ -55,11 +55,13 @@ RUN composer global require drush/drush:8.x
 ### Drupal Console
 RUN composer global require drupal/console:1.0.0-beta1 && \
 export PATH=$HOME/.composer/vendor/bin:$PATH && \
-drupal init --override
+drupal init --override && \
+mkdir -p ~/.config/fish/completions && \
+ln -s ~/.console/drupal.fish ~/.config/fish/completions/drupal.fish
 ADD app/.console/phpcheck.yml /app/.console/phpcheck.yml
 
-### PlatformSH CLI 
-# @TODO this should be build using compsoer. composer builds currently fail, so we simulate it
+### PlatformSH CLI
+# @TODO this should be build using composer. Composer builds currently fail, so we simulate it
 #        RUN composer global require platformsh/cli
 #
 RUN curl -L -o /app/.composer/vendor/bin/platform https://github.com/platformsh/platformsh-cli/releases/download/v3.1.1/platform.phar && \
