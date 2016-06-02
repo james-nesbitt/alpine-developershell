@@ -52,8 +52,6 @@ plugins=(git)
 
 # User configuration
 
-export PATH="$PATH:$HOME/bin:/usr/local/bin"
-
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -84,14 +82,14 @@ source $ZSH/oh-my-zsh.sh
 # Drupal specific aliases.
 alias app_drupal="/app/project/vendor/bin/drupal --root=/app/project/web "
 alias app_drush="/app/project/vendor/bin/drush --root=/app/project/web "
+# Allow binaries to be easily added to $HOME/bin.
+export PATH="$PATH:$HOME/bin"
 
 # Include paths for different tools.
 export PATH="$PATH:$HOME/.gem/ruby/2.1.0/bin"
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 export PATH="$PATH:$HOME/project/vendor/bin"
 
-# Stop some grep errors.
-unset GREP_OPTIONS
 
 # Drupal Console configuration.
 source "$HOME/.console/console.rc" 2>/dev/null
