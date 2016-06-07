@@ -61,6 +61,11 @@ mkdir -p ~/.config/fish/completions && \
 ln -s ~/.console/drupal.fish ~/.config/fish/completions/drupal.fish
 ADD app/.console/phpcheck.yml /app/.console/phpcheck.yml
 
+### Drupal 8
+# Prepare composer caches for Drupal 8 project creation.
+RUN composer create-project drupal-composer/drupal-project:8.x-dev /tmp/tmp_drupal8 --stability dev --no-interaction && \
+rm -rf /tmp/tmp_drupal8
+
 ### PlatformSH CLI
 # @TODO this should be build using composer. Composer builds currently fail, so we simulate it
 #        RUN composer global require platformsh/cli
