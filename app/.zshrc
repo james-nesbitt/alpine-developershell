@@ -1,10 +1,11 @@
+####
+# ZSH configuration
+#
 
-
-# Load from ~/.zshrc.d
+# Load any rc files inside ~/.zshrc.d
 if [ -d "${HOME}/.zshrc.d" ]; then
-        for zshfile in ${HOME}/.zshrc.d/*; do
-                source "${zshfile}"
-        done
-        unset zshfile
+  for zshfile in ${HOME}/.zshrc.d/*; do
+    source ${zshfile}
+  done
 fi
 
