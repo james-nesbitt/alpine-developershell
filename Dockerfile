@@ -70,7 +70,7 @@ rm -rf /tmp/tmp_drupal8
 # @TODO this should be build using composer. Composer builds currently fail, so we simulate it
 #        RUN composer global require platformsh/cli
 #
-RUN curl -L -o /app/.composer/vendor/bin/platform https://github.com/platformsh/platformsh-cli/releases/download/v3.1.1/platform.phar && \
+RUN curl -L -o /app/.composer/vendor/bin/platform https://github.com/platformsh/platformsh-cli/releases/download/v3.2.2/platform.phar && \
     chmod a+x /app/.composer/vendor/bin/platform
 
 ### oh-my-zsh
