@@ -43,19 +43,19 @@ RUN npm install -g gulp grunt
 
 ### Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
-php composer-setup.php --install-dir=/usr/local/bin --filename=composer --version=1.1.1 && \
+php composer-setup.php --install-dir=/usr/local/bin --filename=composer --version=1.1.2 && \
 php -r "unlink('composer-setup.php');" && \
-composer global require "hirak/prestissimo:^0.3"
+composer global require "hirak/prestissimo:0.3.2"
 
 ## App user specific
 
 USER app
 
 ### Drush
-RUN composer global require drush/drush:8.x
+RUN composer global require drush/drush:8.1.2
 
 ### Drupal Console
-RUN composer global require drupal/console:1.0.0-beta1 && \
+RUN composer global require drupal/console:1.0.0-beta2 && \
 export PATH=$HOME/.composer/vendor/bin:$PATH && \
 drupal init --override && \
 mkdir -p ~/.config/fish/completions && \
