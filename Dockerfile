@@ -13,6 +13,7 @@ zsh \
 tar \
 gzip \
 p7zip \
+py-yaml \
 xz \
 nodejs \
 sudo \
