@@ -28,6 +28,7 @@ ADD etc/sudoers.d/app_nopasswd /etc/sudoers.d/app_nopasswd
 ### PHP and MySQL
 RUN apk --no-cache --update add \
 mysql-client \
+postgresql-client \
 php7-ast \
 php7-openssl \
 php7-pear \
