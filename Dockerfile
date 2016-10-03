@@ -60,7 +60,7 @@ USER app
 RUN composer global require drush/drush:8.1.2
 
 ### Drupal Console
-RUN composer global require drupal/console:1.0.0-rc3 && \
+RUN composer global require drupal/console-en:1.0.0-rc1 drupal/console-core:1.0.0-rc3 drupal/console:1.0.0-rc3 && \
 export PATH=$HOME/.composer/vendor/bin:$PATH && \
 drupal init --override && \
 mkdir -p ~/.config/fish/completions && \
