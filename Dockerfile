@@ -8,7 +8,7 @@ MAINTAINER aleksi.johansson@wunder.io
 ## Global
 
 ### Common developer tools
-RUN apk --update add \
+RUN apk --no-cache add \
 curl \
 wget \
 git \
@@ -30,7 +30,7 @@ rm -rf /var/cache/apk/*
 ADD etc/sudoers.d/app_nopasswd /etc/sudoers.d/app_nopasswd
 
 ### PHP and MySQL
-RUN apk --no-cache --update add \
+RUN apk --no-cache add \
 mysql-client \
 postgresql-client \
 php7-ast \
