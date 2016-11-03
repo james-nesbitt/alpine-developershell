@@ -1,5 +1,9 @@
-FROM quay.io/wunder/alpine-php
-MAINTAINER aleksi.johansson@wunderkraut.com
+# wunder/fuzzy-alpine-devshell
+#
+# VERSION v7.0.12-0
+#
+FROM quay.io/wunder/fuzzy-alpine-php-dev:v7.0.12
+MAINTAINER aleksi.johansson@wunder.io
 
 ## Global
 

@@ -1,13 +1,22 @@
-# wundertools-image-fuzzy-developershell
-A developer shell and command image for Drupal. Deploys to:
+# image-fuzzy-alpine-devshell
 
-https://quay.io/repository/wunder/wundertools-image-fuzzy-developershell.
+Fuzzy as in reference to the https://en.wikipedia.org/wiki/The_Mythical_Man-Month book where Fred describes the approach of "write one to throw away" as the best start.
 
-## Base
+A developer shell and command image for Drupal development.
 
-This image is based on "upstream" wunder/alpine-php image which means it shares the basic PHP configuration with other environment like production:
+Maintained by: Aleksi Johansson <aleksi.johansson@wunder.io>
 
-https://github.com/wunderkraut/wunder-alpine-base
+## Docker
+
+### Image
+
+This image is available publicly at:
+
+- quay.io/wunder/fuzzy-alpine-devshell : [![Docker Repository on Quay](https://quay.io/repository/wunder/fuzzy-alpine-devshell/status "Docker Repository on Quay")](https://quay.io/repository/wunder/fuzzy-alpine-devshell)
+
+### Base
+
+This image is based on the fuzzy-alpine-php-dev image https://github.com/wunderkraut/image-fuzzy-alpine-php-dev.
 
 ## Purpose
 
@@ -42,7 +51,7 @@ The image contains at least but not limited to the following tools:
 
 Note: Project specific versions of Drush and Drupal Console should be a part of composer in your Drupal 8 project.
 
-## Usage
+## Using this Image
 
 Run this container, either as a shell or by specifying a command with flags, attach it to whatever volumes and containers you need, and get isolated command environments as you wish.
 
@@ -63,7 +72,7 @@ You can customize the console experience to your liking or to match your host co
 
 Here is an example how to run the container with your own configuration:
 ~~~
-docker run --rm -it -v ~/.zshrc:/app/.zshrc ~/.oh-my-zsh:/app/.oh-my-zsh quay.io/wunder/wundertools-image-fuzzy-developershell
+docker run --rm -it -v ~/.zshrc:/app/.zshrc ~/.oh-my-zsh:/app/.oh-my-zsh quay.io/wunder/fuzzy-alpine-devshell
 ~~~
 Note: This maps your hosts `~/.zshrc` and `~/.oh-my-zsh` to the container which means that if you change them inside the container, they are changed on the host too.
 
@@ -73,10 +82,10 @@ You can find more examples in the `scripts` folder of this project.
 
 - If you want to change the configuration of this image and build it locally for testing you can do that by running:
 ~~~
-docker build --no-cache -t quay.io/wunder/wundertools-image-fuzzy-developershell .
+docker build --no-cache -t quay.io/wunder/fuzzy-alpine-devshell .
 ~~~
 
 - You can get available php variables by running:
 ~~~
-docker run --rm -it quay.io/wunder/wundertools-image-fuzzy-developershell php -r "phpinfo();"
+docker run --rm -it quay.io/wunder/fuzzy-alpine-devshell php -r "phpinfo();"
 ~~~
