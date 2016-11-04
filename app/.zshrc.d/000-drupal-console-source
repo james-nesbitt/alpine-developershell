@@ -1,0 +1,2 @@
+# Include Drupal Console source.
+source "$HOME/.console/console.rc" 2>/dev/null
