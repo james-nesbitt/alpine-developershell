@@ -6,7 +6,9 @@ FROM quay.io/wunder/fuzzy-alpine-php-dev:v7.0.12
 MAINTAINER aleksi.johansson@wunder.io
 
 # Set versions.
-ENV DRUPAL_CONSOLE_VERSION=1.0.0-rc7
+ENV DRUPAL_CONSOLE_VERSION=1.0.0-rc11
+ENV PLATFORMSH_CLI_VERSION=3.9.0
+ENV DRUSH_VERSION=8.1.8
 
 ## Global
 
@@ -60,11 +62,11 @@ composer global require "hirak/prestissimo:0.3.2"
 USER app
 
 ### Drush
-RUN composer global require drush/drush:8.1.2
+RUN composer global require drush/drush:${DRUSH_VERSION}
 
 ### Drupal Console
 # @TODO this should be built using composer. Composer builds currently fail, so we simulate it
-#        RUN composer global require drupal/console:${DRUPAL_CONSOLE_VERSION} && \
+# RUN composer global require drupal/console:${DRUPAL_CONSOLE_VERSION} --stability dev
 #
 RUN cd /tmp && \
 curl -L https://github.com/hechoendrupal/DrupalConsole/archive/${DRUPAL_CONSOLE_VERSION}.tar.gz | tar -zx && \
@@ -78,7 +80,8 @@ rm -rf /tmp/DrupalConsole-${DRUPAL_CONSOLE_VERSION}
 RUN composer create-project drupal-composer/drupal-project:8.x-dev /tmp/tmp_drupal8 --stability dev --no-interaction && \
 export PATH=$HOME/.composer/vendor/bin:$PATH && \
 cd /tmp/tmp_drupal8 && \
-drupal init --override --no-interaction && \
+composer install && \
+# drupal init --override --no-interaction && \
 mkdir -p ~/.config/fish/completions && \
 ln -s ~/.console/drupal.fish ~/.config/fish/completions/drupal.fish && \
 rm -rf /tmp/tmp_drupal8
@@ -86,13 +89,13 @@ ADD app/.console/phpcheck.yml /app/.console/phpcheck.yml
 
 ### PlatformSH CLI
 # @TODO this should be built using composer. Composer builds currently fail, so we simulate it
-#        RUN composer global require platformsh/cli
+# RUN composer global require platformsh/cli:${PLATFORMSH_CLI_VERSION}
 #
-RUN curl -L -o /app/.composer/vendor/bin/platform https://github.com/platformsh/platformsh-cli/releases/download/v3.2.2/platform.phar && \
+RUN curl -L -o /app/.composer/vendor/bin/platform https://github.com/platformsh/platformsh-cli/releases/download/v${PLATFORMSH_CLI_VERSION}/platform.phar && \
     chmod a+x /app/.composer/vendor/bin/platform
 
 ### oh-my-zsh
-RUN git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+RUN git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 ADD app/.zshrc /app/.zshrc
 ADD app/.zshrc.d /app/.zshrc.d
 
