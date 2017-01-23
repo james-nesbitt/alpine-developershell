@@ -89,3 +89,7 @@ docker build --no-cache -t quay.io/wunder/fuzzy-alpine-devshell .
 ~~~
 docker run --rm -it quay.io/wunder/fuzzy-alpine-devshell php -r "phpinfo();"
 ~~~
+
+## Contributing
+
+Please feel free to submit pull requests. The pull requests are automatically built to test that they at least build.
