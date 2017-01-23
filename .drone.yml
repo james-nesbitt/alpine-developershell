@@ -1,5 +1,5 @@
 pipeline:
   build:
-    image: docker
+    image: docker:1.13
     commands:
       - docker build .
