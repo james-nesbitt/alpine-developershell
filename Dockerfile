@@ -17,6 +17,7 @@ ENV DRUSH_VERSION=8.1.9
 ### Common developer tools
 RUN apk --no-cache add \
 curl \
+docker \
 wget \
 git \
 vim \
