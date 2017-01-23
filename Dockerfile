@@ -1,14 +1,16 @@
 # wunder/fuzzy-alpine-devshell
 #
-# VERSION v7.0.12-0
+# VERSION v7.0.12-1
 #
 FROM quay.io/wunder/fuzzy-alpine-php-dev:v7.0.12
 MAINTAINER aleksi.johansson@wunder.io
 
 # Set versions.
-ENV DRUPAL_CONSOLE_VERSION=1.0.0-rc11
-ENV PLATFORMSH_CLI_VERSION=3.9.0
-ENV DRUSH_VERSION=8.1.8
+ENV COMPOSER_VERSION=1.3.1
+ENV PRESTISSIMO_VERSION=0.3.5
+ENV DRUPAL_CONSOLE_VERSION=1.0.0-rc14
+ENV PLATFORMSH_CLI_VERSION=3.12.0
+ENV DRUSH_VERSION=8.1.9
 
 ## Global
 
@@ -53,9 +55,9 @@ RUN npm install -g gulp grunt
 
 ### Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
-php composer-setup.php --install-dir=/usr/local/bin --filename=composer --version=1.1.2 && \
+php composer-setup.php --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} && \
 php -r "unlink('composer-setup.php');" && \
-composer global require "hirak/prestissimo:0.3.2"
+composer global require "hirak/prestissimo:${PRESTISSIMO_VERSION}"
 
 ## App user specific
 
@@ -69,11 +71,13 @@ RUN composer global require drush/drush:${DRUSH_VERSION}
 # RUN composer global require drupal/console:${DRUPAL_CONSOLE_VERSION} --stability dev
 #
 RUN cd /tmp && \
-curl -L https://github.com/hechoendrupal/DrupalConsole/archive/${DRUPAL_CONSOLE_VERSION}.tar.gz | tar -zx && \
-mv /tmp/DrupalConsole-${DRUPAL_CONSOLE_VERSION}/bin/drupal /app/.composer/vendor/bin/ && \
-mv /tmp/DrupalConsole-${DRUPAL_CONSOLE_VERSION}/bin/drupal.php /app/.composer/vendor/bin/ && \
+echo ${DRUPAL_CONSOLE_VERSION} && \
+wget https://github.com/hechoendrupal/DrupalConsole/archive/${DRUPAL_CONSOLE_VERSION}.tar.gz && \
+tar -zxf ${DRUPAL_CONSOLE_VERSION}.tar.gz && \
+mv /tmp/drupal-console-${DRUPAL_CONSOLE_VERSION}/bin/drupal /app/.composer/vendor/bin/ && \
+mv /tmp/drupal-console-${DRUPAL_CONSOLE_VERSION}/bin/drupal.php /app/.composer/vendor/bin/ && \
 cd && \
-rm -rf /tmp/DrupalConsole-${DRUPAL_CONSOLE_VERSION}
+rm -rf /tmp/drupal-console-${DRUPAL_CONSOLE_VERSION}
 
 ### Drupal 8
 # Prepare composer caches for Drupal 8 project creation and init Drupal Console.
@@ -91,8 +95,8 @@ ADD app/.console/phpcheck.yml /app/.console/phpcheck.yml
 # @TODO this should be built using composer. Composer builds currently fail, so we simulate it
 # RUN composer global require platformsh/cli:${PLATFORMSH_CLI_VERSION}
 #
-RUN curl -L -o /app/.composer/vendor/bin/platform https://github.com/platformsh/platformsh-cli/releases/download/v${PLATFORMSH_CLI_VERSION}/platform.phar && \
-    chmod a+x /app/.composer/vendor/bin/platform
+RUN wget -O /app/.composer/vendor/bin/platform https://github.com/platformsh/platformsh-cli/releases/download/v${PLATFORMSH_CLI_VERSION}/platform.phar && \
+chmod a+x /app/.composer/vendor/bin/platform
 
 ### oh-my-zsh
 RUN git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
