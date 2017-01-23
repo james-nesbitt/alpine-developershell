@@ -1,6 +1,6 @@
 # wunder/fuzzy-alpine-devshell
 #
-# VERSION v7.0.12-2
+# VERSION v7.0.12-3
 #
 FROM quay.io/wunder/fuzzy-alpine-php-dev:v7.0.12
 MAINTAINER aleksi.johansson@wunder.io
