@@ -1,5 +1,7 @@
 pipeline:
   build:
     image: docker:1.13
+    privileged: true
     commands:
       - docker build .
+    volumes: [ /var/run/docker.sock:/var/run/docker.sock ]
