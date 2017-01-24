@@ -1,6 +1,6 @@
 # wunder/fuzzy-alpine-devshell
 #
-# VERSION v7.0.12-2
+# VERSION v7.0.12-3
 #
 FROM quay.io/wunder/fuzzy-alpine-php-dev:v7.0.12
 MAINTAINER aleksi.johansson@wunder.io
@@ -14,6 +14,7 @@ ENV PLATFORMSH_CLI_VERSION=3.12.0
 ### Common developer tools
 RUN apk --no-cache add \
 curl \
+docker \
 wget \
 git \
 vim \
