@@ -9,10 +9,10 @@
 # define which image to use as a command shell image
 #
 # * this image is still under development, and has some quirks.
-# * you will need to occasionally update this image: docker pull quay.io/wunder/wundertools-image-fuzzy-developershell
-# * you can report any image related issues here: https://github.com/wunderkraut/wundertools-image-fuzzy-developershell/issues
+# * you will need to occasionally update this image: docker pull quay.io/wunder/fuzzy-alpine-devshell
+# * you can report any image related issues here: https://github.com/wunderkraut/image-fuzzy-alpine-devshell/issues
 #
-DOCKER_IMAGE_DEVELOPERTOOL="quay.io/wunder/wundertools-image-fuzzy-developershell"
+DOCKER_IMAGE_DEVELOPERTOOL="quay.io/wunder/fuzzy-alpine-devshell"
 
 # define what paths are used to bind/mount into the container
 PATH_TARGET="$(pwd)"

@@ -7,10 +7,7 @@ MAINTAINER aleksi.johansson@wunder.io
 
 # Set versions.
 ENV COMPOSER_VERSION=1.3.1
-ENV PRESTISSIMO_VERSION=0.3.5
-ENV DRUPAL_CONSOLE_VERSION=1.0.0-rc14
 ENV PLATFORMSH_CLI_VERSION=3.12.0
-ENV DRUSH_VERSION=8.1.9
 
 ## Global
 
@@ -57,28 +54,19 @@ RUN npm install -g gulp grunt
 ### Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
 php composer-setup.php --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} && \
-php -r "unlink('composer-setup.php');" && \
-composer global require "hirak/prestissimo:${PRESTISSIMO_VERSION}"
+php -r "unlink('composer-setup.php');"
 
 ## App user specific
 
 USER app
 
-### Drush
-RUN composer global require drush/drush:${DRUSH_VERSION}
-
-### Drupal Console
-# @TODO this should be built using composer. Composer builds currently fail, so we simulate it
-# RUN composer global require drupal/console:${DRUPAL_CONSOLE_VERSION} --stability dev
-#
-RUN cd /tmp && \
-echo ${DRUPAL_CONSOLE_VERSION} && \
-wget https://github.com/hechoendrupal/DrupalConsole/archive/${DRUPAL_CONSOLE_VERSION}.tar.gz && \
-tar -zxf ${DRUPAL_CONSOLE_VERSION}.tar.gz && \
-mv /tmp/drupal-console-${DRUPAL_CONSOLE_VERSION}/bin/drupal /app/.composer/vendor/bin/ && \
-mv /tmp/drupal-console-${DRUPAL_CONSOLE_VERSION}/bin/drupal.php /app/.composer/vendor/bin/ && \
-cd && \
-rm -rf /tmp/drupal-console-${DRUPAL_CONSOLE_VERSION}
+### Install various composer packages globally, from app/.composer/composer.json
+# This includes:
+#   - drush
+#   - drupal console
+RUN mkdir /app/.composer
+ADD app/.composer/composer.json /app/.composer/composer.json
+RUN composer global update
 
 ### Drupal 8
 # Prepare composer caches for Drupal 8 project creation and init Drupal Console.
