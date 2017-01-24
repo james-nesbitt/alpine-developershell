@@ -1,0 +1,11 @@
+{
+    "require": {
+        "hirak/prestissimo": "0.3.5",
+        "drush/drush": "8.1.9",
+        "dflydev/dot-access-configuration": "dev-master",
+        "psy/psysh": "v0.8.0",
+        "drupal/console-core": "1.0.0-rc14",
+        "drupal/console-en": "1.0.0-rc14",
+        "drupal/console": "1.0.0-rc14"
+    }
+}
