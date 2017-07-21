@@ -1,8 +1,8 @@
 # wunder/fuzzy-alpine-devshell
 #
-# VERSION v7.0.12-3
+# VERSION v7.1.5-0
 #
-FROM quay.io/wunder/fuzzy-alpine-php-dev:v7.0.12
+FROM quay.io/wunder/fuzzy-alpine-php-dev:v7.1.5
 MAINTAINER aleksi.johansson@wunder.io
 
 # Set versions.
@@ -12,26 +12,28 @@ ENV PLATFORMSH_CLI_VERSION=3.12.0
 ## Global
 
 ### Common developer tools
-RUN apk --no-cache add \
-curl \
-docker \
-wget \
-git \
-vim \
-zsh \
-tar \
-gzip \
-p7zip \
-py-yaml \
-xz \
-nodejs \
-sudo \
-openssh \
-openssl \
-ansible \
-rsync && \
-rm -rf /tmp/* && \
-rm -rf /var/cache/apk/*
+RUN apk --no-cache --update add \
+      curl \
+      docker \
+      wget \
+      git \
+      vim \
+      zsh \
+      tar \
+      gzip \
+      p7zip \
+      py-yaml \
+      xz \
+      nodejs \
+      nodejs-npm \
+      sudo \
+      openssh \
+      openssl \
+      ansible \
+      rsync && \
+    # Cleanup
+    rm -rf /tmp/* && \
+    rm -rf /var/cache/apk/*
 ADD etc/sudoers.d/app_nopasswd /etc/sudoers.d/app_nopasswd
 
 ### PHP and MySQL
@@ -42,8 +44,8 @@ php7-ast \
 php7-openssl \
 php7-pear \
 php7-phar \
+php7-tokenizer \
 php7-zlib && \
-ln -s /usr/bin/php7 /usr/bin/php && \
 rm -rf /tmp/* && \
 rm -rf /var/cache/apk/*
 ADD etc/php7/conf.d/WK_date.ini /etc/php7/conf.d/WK_date.ini
