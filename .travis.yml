@@ -5,9 +5,10 @@ language: php
 services:
   - docker
 
-script:
-  # build the image
+before_install:
   - docker build -t shell .
+
+script:
   # make sure that the image can run
   - docker run --rm -t -i shell ps
   # run a simple composer command
