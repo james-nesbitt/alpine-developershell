@@ -2,7 +2,7 @@
 #
 # VERSION v7.1.5-0
 #
-FROM quay.io/wunder/fuzzy-alpine-php-dev:v7.1.5-0-pre3
+FROM quay.io/wunder/fuzzy-alpine-php-dev:v7.1.5
 MAINTAINER aleksi.johansson@wunder.io
 
 # Set versions.
