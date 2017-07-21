@@ -44,7 +44,6 @@ php7-openssl \
 php7-pear \
 php7-phar \
 php7-zlib && \
-ln -s /usr/bin/php7 /usr/bin/php && \
 rm -rf /tmp/* && \
 rm -rf /var/cache/apk/*
 ADD etc/php7/conf.d/WK_date.ini /etc/php7/conf.d/WK_date.ini
