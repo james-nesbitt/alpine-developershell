@@ -25,6 +25,7 @@ RUN apk --no-cache --update add \
       py-yaml \
       xz \
       nodejs \
+      nodejs-npm \
       sudo \
       openssh \
       openssl \
