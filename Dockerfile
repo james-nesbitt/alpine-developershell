@@ -44,6 +44,7 @@ mysql-client \
 postgresql-client \
 php7-ast \
 php7-openssl \
+php7-tokenizer \
 php7-pear \
 php7-phar \
 php7-tokenizer \
