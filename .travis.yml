@@ -10,6 +10,4 @@ before_install:
 
 script:
   # make sure that the image can run
-  - docker run --rm -t -i shell ps
-  # run a simple composer command
-  - composer self-update
+  - docker run --rm -t -i shell -c /usr/bin/whoami
