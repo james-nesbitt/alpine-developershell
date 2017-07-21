@@ -2,7 +2,7 @@
 #
 # VERSION v7.1.5-0
 #
-FROM quay.io/wunder/fuzzy-alpine-php-dev:v7.1.5-0-pre
+FROM quay.io/wunder/fuzzy-alpine-php-dev:v7.1.5-0-pre3
 MAINTAINER aleksi.johansson@wunder.io
 
 # Set versions.
@@ -12,26 +12,27 @@ ENV PLATFORMSH_CLI_VERSION=3.12.0
 ## Global
 
 ### Common developer tools
-RUN apk --no-cache add \
-curl \
-docker \
-wget \
-git \
-vim \
-zsh \
-tar \
-gzip \
-p7zip \
-py-yaml \
-xz \
-nodejs \
-sudo \
-openssh \
-openssl \
-ansible \
-rsync && \
-rm -rf /tmp/* && \
-rm -rf /var/cache/apk/*
+RUN apk --no-cache --update add \
+      curl \
+      docker \
+      wget \
+      git \
+      vim \
+      zsh \
+      tar \
+      gzip \
+      p7zip \
+      py-yaml \
+      xz \
+      nodejs \
+      sudo \
+      openssh \
+      openssl \
+      ansible \
+      rsync && \
+    # Cleanup
+    rm -rf /tmp/* && \
+    rm -rf /var/cache/apk/*
 ADD etc/sudoers.d/app_nopasswd /etc/sudoers.d/app_nopasswd
 
 ### PHP and MySQL
