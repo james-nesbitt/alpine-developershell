@@ -8,6 +8,7 @@ MAINTAINER aleksi.johansson@wunder.io
 # Set versions.
 ENV COMPOSER_VERSION=1.3.1
 ENV PLATFORMSH_CLI_VERSION=3.12.0
+ENV TRAVIS_CI_CLI_VERSION=1.8.8
 
 ## Global
 
@@ -88,6 +89,9 @@ ADD app/.console/phpcheck.yml /app/.console/phpcheck.yml
 #
 RUN wget -O /app/.composer/vendor/bin/platform https://github.com/platformsh/platformsh-cli/releases/download/v${PLATFORMSH_CLI_VERSION}/platform.phar && \
 chmod a+x /app/.composer/vendor/bin/platform
+
+### Travis CI CLI
+RUN gem install travis -v ${TRAVIS_CI_CLI_VERSION}
 
 ### oh-my-zsh
 RUN git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh

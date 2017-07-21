@@ -47,7 +47,8 @@ The image contains at least but not limited to the following tools:
 9. Curl/Wget,
 10. Zip/p7zip/tar/xz/gz etc,
 11. Drush (global),
-12. and Drupal Console (global).
+12. Drupal Console (global),
+13. and Travis CI CLI.
 
 Note: Project specific versions of Drush and Drupal Console should be a part of composer in your Drupal 8 project.
 
