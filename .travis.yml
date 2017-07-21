@@ -1,0 +1,15 @@
+sudo: required
+
+language: php
+
+services:
+  - docker
+
+before_install:
+  - docker build -t shell .
+
+script:
+  # make sure that the image can run
+  - docker run --rm -t -i shell ps
+  # run a simple composer command
+  - composer self-update
