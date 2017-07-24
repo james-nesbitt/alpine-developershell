@@ -1,12 +1,12 @@
 # wunder/fuzzy-alpine-devshell
 #
-# VERSION v7.1.5-0
+# VERSION v7.1.5-2
 #
 FROM quay.io/wunder/fuzzy-alpine-php-dev:v7.1.5
 MAINTAINER aleksi.johansson@wunder.io
 
 # Set versions.
-ENV COMPOSER_VERSION=1.3.1
+ENV COMPOSER_VERSION=1.4.2
 ENV PLATFORMSH_CLI_VERSION=3.12.0
 ENV TRAVIS_CI_CLI_VERSION=1.8.8
 
