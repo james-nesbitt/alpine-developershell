@@ -27,6 +27,7 @@ RUN apk --no-cache --update add \
       xz \
       nodejs \
       nodejs-npm \
+      ruby \
       sudo \
       openssh \
       openssl \
@@ -59,6 +60,16 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 php composer-setup.php --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} && \
 php -r "unlink('composer-setup.php');"
 
+### Travis
+# Install travis cli and ruby dependencies
+#   Also installs dev dependencies (build_deps) for compiling ruby-ffi
+#   which are removed after install
+RUN apk add --no-cache ruby ruby-io-console ruby-json git && \
+    apk add --no-cache --virtual build_deps \
+    build-base ruby-dev libc-dev libffi-dev linux-headers && \
+    gem install travis -v ${TRAVIS_CI_CLI_VERSION} --no-rdoc --no-ri && \
+    apk del build_deps
+
 ## App user specific
 
 USER app
@@ -89,9 +100,6 @@ ADD app/.console/phpcheck.yml /app/.console/phpcheck.yml
 #
 RUN wget -O /app/.composer/vendor/bin/platform https://github.com/platformsh/platformsh-cli/releases/download/v${PLATFORMSH_CLI_VERSION}/platform.phar && \
 chmod a+x /app/.composer/vendor/bin/platform
-
-### Travis CI CLI
-RUN gem install travis -v ${TRAVIS_CI_CLI_VERSION}
 
 ### oh-my-zsh
 RUN git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
