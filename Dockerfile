@@ -47,7 +47,8 @@ php7-openssl \
 php7-pear \
 php7-phar \
 php7-tokenizer \
-php7-zlib && \
+php7-zlib \
+php7-simplexml && \
 rm -rf /tmp/* && \
 rm -rf /var/cache/apk/*
 ADD etc/php7/conf.d/WK_date.ini /etc/php7/conf.d/WK_date.ini
